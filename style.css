@@ -89,7 +89,7 @@ header {
   width: 100%;
   z-index: 900;
   position: relative;
-  margin-top: 70px; /* Adjusted to align with the header */
+  margin-top: 70px; /* Align with the header */
 }
 
 .deck-body {
@@ -99,12 +99,6 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-/* Transparent Middle Section */
-.transparent-middle {
-  width: 100%;
-  height: 0; /* Reduced to minimize space */
 }
 
 /* Emoji Grid */
@@ -170,7 +164,7 @@ header {
 
 /* Main Content Styling */
 main {
-  padding-top: 280px; /* Adjusted to bring placeholders closer */
+  padding-top: 250px; /* Reduced padding for better fit on mobile */
   padding-bottom: 20px;
 }
 
@@ -254,6 +248,12 @@ main {
   background-color: #d3eaff;
   border-color: #4CAF50;
   transform: scale(1.05);
+}
+
+.emoji-placeholder.magnet-active {
+  background-color: #cce5ff;
+  border-color: #4CAF50;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
 }
 
 /* Footer Styles */
@@ -362,6 +362,13 @@ footer {
   transform: scale(1.1);
 }
 
+/* Dragging Clone Styles */
+.dragging-clone {
+  opacity: 0.8;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
 /* Responsive Styles */
 @media (max-width: 480px) {
   .emoji-item,
@@ -401,13 +408,6 @@ footer {
   }
 
   main {
-    padding-top: 250px; /* Adjusted for smaller screens */
+    padding-top: 200px; /* Further reduced padding for better fit */
   }
-}
-
-/* Visual Indicators for Magnet Effect */
-.emoji-placeholder.magnet-active {
-  background-color: #cce5ff;
-  border-color: #4CAF50;
-  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
 }
