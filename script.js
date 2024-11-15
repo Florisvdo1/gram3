@@ -150,7 +150,12 @@ function handleDragMove(e) {
     // Magnet Effect: Check proximity and adjust position
     if (currentDroppable) {
       const placeholderRect = currentDroppable.getBoundingClientRect();
-      const distance = getDistance(touch.clientX, touch.clientY, placeholderRect.left + placeholderRect.width / 2, placeholderRect.top + placeholderRect.height / 2);
+      const distance = getDistance(
+        touch.clientX,
+        touch.clientY,
+        placeholderRect.left + placeholderRect.width / 2,
+        placeholderRect.top + placeholderRect.height / 2
+      );
       const magnetThreshold = 50; // Pixels
 
       if (distance < magnetThreshold) {
@@ -200,7 +205,9 @@ function handleDragEnd(e) {
       const sector = currentDroppable.closest('.sector');
       if (sector) {
         const placeholders = sector.querySelectorAll('.emoji-placeholder');
-        const allFilled = Array.from(placeholders).every(placeholder => placeholder.textContent.trim() !== '');
+        const allFilled = Array.from(placeholders).every(
+          placeholder => placeholder.textContent.trim() !== ''
+        );
         if (allFilled) {
           const checkButton = sector.querySelector('.check-button');
           checkButton.classList.add('checked');
@@ -263,7 +270,12 @@ function handleMouseMove(e) {
     // Magnet Effect: Check proximity and adjust position
     if (currentDroppable) {
       const placeholderRect = currentDroppable.getBoundingClientRect();
-      const distance = getDistance(e.clientX, e.clientY, placeholderRect.left + placeholderRect.width / 2, placeholderRect.top + placeholderRect.height / 2);
+      const distance = getDistance(
+        e.clientX,
+        e.clientY,
+        placeholderRect.left + placeholderRect.width / 2,
+        placeholderRect.top + placeholderRect.height / 2
+      );
       const magnetThreshold = 50; // Pixels
 
       if (distance < magnetThreshold) {
@@ -274,7 +286,7 @@ function handleMouseMove(e) {
         draggedEmojiClone.style.left = `${e.clientX + deltaX}px`;
         draggedEmojiClone.style.top = `${e.clientY + deltaY}px`;
 
-        // Haptic feedback is generally not available on desktop; skip
+        // Note: Haptic feedback is not available on desktop; skip
       } else {
         currentDroppable.classList.remove('magnet-active');
       }
@@ -303,7 +315,9 @@ function handleMouseUp(e) {
       const sector = currentDroppable.closest('.sector');
       if (sector) {
         const placeholders = sector.querySelectorAll('.emoji-placeholder');
-        const allFilled = Array.from(placeholders).every(placeholder => placeholder.textContent.trim() !== '');
+        const allFilled = Array.from(placeholders).every(
+          placeholder => placeholder.textContent.trim() !== ''
+        );
         if (allFilled) {
           const checkButton = sector.querySelector('.check-button');
           checkButton.classList.add('checked');
@@ -330,8 +344,9 @@ function updateDraggedEmojiPosition(event) {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
     // Position the clone under the cursor/finger
-    draggedEmojiClone.style.left = `${x + scrollLeft - (draggedEmojiClone.offsetWidth / 2)}px`;
-    draggedEmojiClone.style.top = `${y + scrollTop - (draggedEmojiClone.offsetHeight / 2)}px`;
+    // Remove the subtraction of half width and height to prevent double centering
+    draggedEmojiClone.style.left = `${x + scrollLeft}px`;
+    draggedEmojiClone.style.top = `${y + scrollTop}px`;
     draggedEmojiClone.style.position = 'absolute';
     draggedEmojiClone.style.zIndex = 1000;
   } catch (error) {
